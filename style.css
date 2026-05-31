@@ -190,14 +190,28 @@ span {
   left: 0;
   width: 120px;
   pointer-events: none;
-  z-index: 0;
+  z-index: 10;
 }
 
-.fusee__image {
+.fusee__image,
+.fusee__piece {
   display: block;
   width: 100%;
   height: auto;
   object-fit: contain;
+}
+
+.fusee__image {
+  position: relative;
+  z-index: 1;
+}
+
+.fusee__piece {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  opacity: 0;
 }
 
 /* ---------------- lignes de fond ---------------- */
