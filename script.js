@@ -35,8 +35,6 @@ const ecran4 = document.querySelector("#ecran__4");
 const ecran5 = document.querySelector("#ecran__5");
 const ecran6 = document.querySelector("#ecran__6");
 
-const elementsFusee = document.querySelectorAll(".interaction__fusee");
-
 /* ---------------- images fusée ---------------- */
 
 const imagesFusee = [
@@ -58,12 +56,27 @@ const piecesFusee = [
 
 let positionFuseeActuelle = {
   ecran: ecran1,
-  x: 78,
-  y: 48,
+  selecteurTexte: ".contenu__texte",
+  decalageX: 0,
+  decalageY: 0,
   rotation: 18
 };
 
 let etapeFusee = 0;
+
+/* ---------------- fonctions utiles ---------------- */
+
+function distanceResponsive(min, ideal, max) {
+  return Math.max(min, Math.min(window.innerWidth * ideal, max));
+}
+
+function decalageDroite(min, ideal, max) {
+  return distanceResponsive(min, ideal, max);
+}
+
+function decalageGauche(min, ideal, max) {
+  return -distanceResponsive(min, ideal, max);
+}
 
 /* position de base de la fusée */
 gsap.set(fusee, {
@@ -107,10 +120,9 @@ function bougerFusee(ecran, selecteurTexte, decalageX, decalageY, rotation, dure
 /* ---------------- fonction construire fusée ---------------- */
 
 function construireFusee(numeroEtape, departX, departY) {
-  if (numeroEtape <= etapeFusee) return; /*emeche de faire une étape déjà faite*/
+  if (numeroEtape <= etapeFusee) return;
 
   const indexPiece = numeroEtape - 1;
-
   pieceFusee.src = piecesFusee[indexPiece];
 
   gsap.set(pieceFusee, {
@@ -151,11 +163,37 @@ function construireFusee(numeroEtape, departX, departY) {
   });
 }
 
+/* ---------------- positions par écran ---------------- */
+
+function placerFuseeEcran1(duree = 1) {
+  bougerFusee(ecran1, ".contenu__texte", decalageDroite(180, 0.28, 500), 0, 18, duree);
+}
+
+function placerFuseeEcran2(duree = 1) {
+  bougerFusee(ecran2, ".contenu__texte", decalageDroite(20, 0.02, 80), distanceResponsive(120, 0.12, 250), 36, duree);
+}
+
+function placerFuseeEcran3(duree = 1) {
+  bougerFusee(ecran3, ".contenu__texte", decalageDroite(160, 0.22, 280), 55, 0, duree);
+}
+
+function placerFuseeEcran4(duree = 1) {
+  bougerFusee(ecran4, ".contenu__texte", decalageGauche(180, 0.32, 600), -50, -50, duree);
+}
+
+function placerFuseeEcran5(duree = 1) {
+  bougerFusee(ecran5, ".contenu__texte", decalageDroite(180, 0.25, 400), 50, 0, duree);
+}
+
+function placerFuseeEcran6(duree = 1) {
+  bougerFusee(ecran6, ".contenu__texte", decalageGauche(180, 0.28, 500), 50, 24, duree);
+}
+
 /* ---------------- position de départ ---------------- */
 
 window.addEventListener("load", () => {
   imageFusee.src = imagesFusee[0];
-  bougerFusee(ecran1, 78, 48, 18, 0);
+  placerFuseeEcran1(0);
 });
 
 /* ---------------- écran 1 ---------------- */
@@ -164,10 +202,10 @@ ScrollTrigger.create({
   trigger: ecran1,
   start: "top 60%",
   onEnter: () => {
-    bougerFusee(ecran1, ".contenu__texte", 500, 0, 18);
+    placerFuseeEcran1();
   },
   onEnterBack: () => {
-    bougerFusee(ecran1, ".contenu__texte",500, 0, 18);
+    placerFuseeEcran1();
   }
 });
 
@@ -177,11 +215,11 @@ ScrollTrigger.create({
   trigger: ecran2,
   start: "top 60%",
   onEnter: () => {
-    bougerFusee(ecran2, ".contenu__texte",20, 250, 36);
+    placerFuseeEcran2();
     construireFusee(1, 0, -180);
   },
   onEnterBack: () => {
-    bougerFusee(ecran2, ".contenu__texte",20, 250, 36);
+    placerFuseeEcran2();
   }
 });
 
@@ -191,15 +229,15 @@ ScrollTrigger.create({
   trigger: ecran3,
   start: "top 60%",
   onEnter: () => {
-    bougerFusee(ecran3, ".contenu__texte",280, 55, 0);
+    placerFuseeEcran3();
     construireFusee(2, 90, -180);
   },
   onEnterBack: () => {
-    bougerFusee(ecran3, ".contenu__texte",280, 55, 0);
+    placerFuseeEcran3();
   }
 });
 
-/*acordéon*/
+/* ---------------- accordéon ---------------- */
 
 const boutonsThematique = document.querySelectorAll(".bouton__thematique");
 
@@ -224,15 +262,15 @@ ScrollTrigger.create({
   trigger: ecran4,
   start: "top 60%",
   onEnter: () => {
-    bougerFusee(ecran4, ".contenu__texte",-600, -50, -50);
+    placerFuseeEcran4();
     construireFusee(3, -180, 0);
   },
   onEnterBack: () => {
-    bougerFusee(ecran4, ".contenu__texte",-600, -50, -50);
+    placerFuseeEcran4();
   }
 });
 
-/*carrousel*/
+/* ---------------- carrousel ---------------- */
 
 const fenetreOeuvres = document.querySelector(".fenetre__oeuvres");
 const boutonGauche = document.querySelector(".bouton__carrousel__gauche");
@@ -258,11 +296,11 @@ ScrollTrigger.create({
   trigger: ecran5,
   start: "top 60%",
   onEnter: () => {
-    bougerFusee(ecran5, ".contenu__texte",400, 50, 0);
+    placerFuseeEcran5();
     construireFusee(4, 180, 0);
   },
   onEnterBack: () => {
-    bougerFusee(ecran5, ".contenu__texte",400, 50, 0);
+    placerFuseeEcran5();
   }
 });
 
@@ -272,10 +310,10 @@ ScrollTrigger.create({
   trigger: ecran6,
   start: "top 60%",
   onEnter: () => {
-    bougerFusee(ecran6, ".contenu__texte",-500, 50, 24);
+    placerFuseeEcran6();
   },
   onEnterBack: () => {
-    bougerFusee(ecran6, ".contenu__texte",-500, 50, 24);
+    placerFuseeEcran6();
   }
 });
 
@@ -285,17 +323,17 @@ window.addEventListener("resize", () => {
   const milieuEcran = window.scrollY + window.innerHeight * 0.6;
 
   if (milieuEcran >= ecran6.offsetTop) {
-    bougerFusee(ecran6, -500, 50, 24, 0);
+    placerFuseeEcran6(0);
   } else if (milieuEcran >= ecran5.offsetTop) {
-    bougerFusee(ecran5, 400, 50, 0, 0);
+    placerFuseeEcran5(0);
   } else if (milieuEcran >= ecran4.offsetTop) {
-    bougerFusee(ecran4, -600, -50, -50, 0);
+    placerFuseeEcran4(0);
   } else if (milieuEcran >= ecran3.offsetTop) {
-    bougerFusee(ecran3, 280, 55, 0, 0);
+    placerFuseeEcran3(0);
   } else if (milieuEcran >= ecran2.offsetTop) {
-    bougerFusee(ecran2, 20, 250, 36, 0);
+    placerFuseeEcran2(0);
   } else {
-    bougerFusee(ecran1, 500, 0, 18, 0);
+    placerFuseeEcran1(0);
   }
 
   ScrollTrigger.refresh();
