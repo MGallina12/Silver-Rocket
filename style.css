@@ -391,7 +391,6 @@ span {
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 20px;
 }
 
 .fenetre__oeuvres {
@@ -413,11 +412,28 @@ span {
 .carte__oeuvre {
   flex: 0 0 calc((100% - 40px) / 3);
   display: grid;
-  gap: 12px;
+  gap: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .visuel__oeuvre {
   aspect-ratio: 16 / 10;
+}
+
+.nom__oeuvre {
+  margin-top: 10px;
+  color: var(--couleur-touche);
+  font-size: 18px;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.texte__oeuvre {
+  color: var(--couleur-gris-fonce);
+  font-size: 15px;
+  line-height: 1.6;
+  text-align: center;
 }
 
 .bouton__carrousel {
@@ -548,42 +564,41 @@ span {
 
   /* ---------------- écran 4 ---------------- */
 
- .carrousel__oeuvres {
-  margin-top: 40px;
-  grid-template-columns: 38px 1fr 38px;
-  align-items: center;
-  gap: 12px;
-}
+  .carrousel__oeuvres {
+    margin-top: 40px;
+    grid-template-columns: 38px 1fr 38px;
+    align-items: center;
+    gap: 12px;
+  }
 
-.fenetre__oeuvres {
-  order: initial;
-}
+  .piste__oeuvres {
+    gap: 16px;
+  }
 
-.bouton__carrousel__gauche,
-.bouton__carrousel__droite {
-  order: initial;
-}
+  .carte__oeuvre {
+    flex: 0 0 100%;
+  }
 
-.piste__oeuvres {
-  gap: 16px;
-}
+  .nom__oeuvre {
+    font-size: 17px;
+  }
 
-.carte__oeuvre {
-  flex: 0 0 100%;
-}
+  .texte__oeuvre {
+    font-size: 14px;
+  }
 
-.bouton__carrousel {
-  width: 38px;
-  height: 38px;
-}
+  .bouton__carrousel {
+    width: 38px;
+    height: 38px;
+  }
 
   /* ---------------- écran 5 ---------------- */
 
-.visuel__delta {
-  width: 80%;
-  max-width: 300px;
-  margin: 36px auto 0 auto;
-}
+  .visuel__delta {
+    width: 80%;
+    max-width: 300px;
+    margin: 36px auto 0 auto;
+  }
 
   /* ---------------- typographie ---------------- */
 
