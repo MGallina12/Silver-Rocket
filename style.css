@@ -190,7 +190,7 @@ span {
   left: 0;
   width: 120px;
   pointer-events: none;
-  z-index: 10;
+  z-index: 0;
 }
 
 .fusee__image,
