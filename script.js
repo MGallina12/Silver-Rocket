@@ -21,10 +21,12 @@ boutonTheme.addEventListener("click", () => {
   }
 });
 
-/* ---------------- constante ---------------- */
+/* ---------------- constantes ---------------- */
 
 const page = document.querySelector(".page");
 const fusee = document.querySelector(".fusee__parcours");
+const imageFusee = document.querySelector(".fusee__image");
+const pieceFusee = document.querySelector(".fusee__piece");
 
 const ecran1 = document.querySelector("#ecran__1");
 const ecran2 = document.querySelector("#ecran__2");
@@ -35,14 +37,33 @@ const ecran6 = document.querySelector("#ecran__6");
 
 const elementsFusee = document.querySelectorAll(".interaction__fusee");
 
-/* ---------------- position fusee ---------------- */
+/* ---------------- images fusée ---------------- */
+
+const imagesFusee = [
+  "images/fusee/fusee_seul.png",
+  "images/fusee/fusee_partie_1.png",
+  "images/fusee/fusee_partie_2.png",
+  "images/fusee/fusee_partie_3.png",
+  "images/fusee/fusee.png"
+];
+
+const piecesFusee = [
+  "images/fusee/partie_haut_fusee.png",
+  "images/fusee/roquette_milieu.png",
+  "images/fusee/roquette_gauche.png",
+  "images/fusee/rockette_droite.png"
+];
+
+/* ---------------- position fusée ---------------- */
 
 let positionFuseeActuelle = {
   ecran: ecran1,
-  x: 88,
-  y: 38,
+  x: 78,
+  y: 48,
   rotation: 18
 };
+
+let etapeFusee = 0;
 
 /* position de base de la fusée */
 gsap.set(fusee, {
@@ -50,11 +71,17 @@ gsap.set(fusee, {
   yPercent: -50
 });
 
-/* ---------------- fonction bouger fusee ---------------- */
+gsap.set(pieceFusee, {
+  opacity: 0,
+  x: 0,
+  y: 0
+});
+
+/* ---------------- fonction bouger fusée ---------------- */
 
 function bougerFusee(ecran, positionX, positionY, rotation, duree = 1) {
   const x = page.clientWidth * (positionX / 100);
-  const y = ecran.offsetTop + (ecran.offsetHeight * (positionY / 100));
+  const y = ecran.offsetTop + ecran.offsetHeight * (positionY / 100);
 
   positionFuseeActuelle = {
     ecran: ecran,
@@ -72,50 +99,57 @@ function bougerFusee(ecran, positionX, positionY, rotation, duree = 1) {
   });
 }
 
-/* bouge la fusée */
+/* ---------------- fonction construire fusée ---------------- */
 
-elementsFusee.forEach((element) => {
-  element.addEventListener("mouseenter", () => {
-    mettreFuseeSousBouton(element);
+function construireFusee(numeroEtape, departX, departY) {
+  if (numeroEtape <= etapeFusee) return; /*emeche de faire une étape déjà faite*/
+
+  const indexPiece = numeroEtape - 1;
+
+  pieceFusee.src = piecesFusee[indexPiece];
+
+  gsap.set(pieceFusee, {
+    x: departX,
+    y: departY,
+    opacity: 1,
+    scale: 1
   });
 
-  element.addEventListener("mouseleave", () => {
-    remettreFuseeAPlace();
+  gsap.to(pieceFusee, {
+    x: 0,
+    y: 0,
+    duration: 0.9,
+    ease: "power2.inOut",
+    onComplete: () => {
+      imageFusee.src = imagesFusee[numeroEtape];
+
+      gsap.set(pieceFusee, {
+        opacity: 0,
+        x: 0,
+        y: 0
+      });
+
+      gsap.fromTo(
+        fusee,
+        { scale: 1 },
+        {
+          scale: 1.08,
+          duration: 0.15,
+          yoyo: true,
+          repeat: 1,
+          ease: "power1.inOut"
+        }
+      );
+
+      etapeFusee = numeroEtape;
+    }
   });
-});
-
-/* ---------------- hover bouton fusée ---------------- */
-
-function mettreFuseeSousBouton(bouton) {
-  // récupère la position et la taille du bouton dans la fenêtre pour pouvoir placer la fusée juste en dessous au moment du hover
-  const rectBouton = bouton.getBoundingClientRect();
-  const rectPage = page.getBoundingClientRect();
-
-  const x = rectBouton.left - rectPage.left + (rectBouton.width / 2);
-  const y = rectBouton.bottom - rectPage.top + 210;
-
-  gsap.to(fusee, {
-    left: x,
-    top: y,
-    rotation: 0,
-    duration: 0.45,
-    ease: "power2.out"
-  });
-}
-
-function remettreFuseeAPlace() {
-  bougerFusee(
-    positionFuseeActuelle.ecran,
-    positionFuseeActuelle.x,
-    positionFuseeActuelle.y,
-    positionFuseeActuelle.rotation,
-    0.6
-  );
 }
 
 /* ---------------- position de départ ---------------- */
 
 window.addEventListener("load", () => {
+  imageFusee.src = imagesFusee[0];
   bougerFusee(ecran1, 78, 48, 18, 0);
 });
 
@@ -139,6 +173,7 @@ ScrollTrigger.create({
   start: "top 60%",
   onEnter: () => {
     bougerFusee(ecran2, 72, 70, 36);
+    construireFusee(1, 0, -180);
   },
   onEnterBack: () => {
     bougerFusee(ecran2, 72, 70, 36);
@@ -152,13 +187,14 @@ ScrollTrigger.create({
   start: "top 60%",
   onEnter: () => {
     bougerFusee(ecran3, 45, 55, 0);
+    construireFusee(2, 90, -180);
   },
   onEnterBack: () => {
     bougerFusee(ecran3, 45, 55, 0);
   }
 });
 
-/* ---------------- accordéon écran 3 ---------------- */
+/*acordéon*/
 
 const boutonsThematique = document.querySelectorAll(".bouton__thematique");
 
@@ -184,13 +220,14 @@ ScrollTrigger.create({
   start: "top 60%",
   onEnter: () => {
     bougerFusee(ecran4, 30, 34, -50);
+    construireFusee(3, -180, 0);
   },
   onEnterBack: () => {
     bougerFusee(ecran4, 30, 34, -50);
   }
 });
 
-/* carrousel */
+/*carrousel*/
 
 const fenetreOeuvres = document.querySelector(".fenetre__oeuvres");
 const boutonGauche = document.querySelector(".bouton__carrousel__gauche");
@@ -217,6 +254,7 @@ ScrollTrigger.create({
   start: "top 60%",
   onEnter: () => {
     bougerFusee(ecran5, 56, 50, 0);
+    construireFusee(4, 180, 0);
   },
   onEnterBack: () => {
     bougerFusee(ecran5, 56, 50, 0);
@@ -236,10 +274,10 @@ ScrollTrigger.create({
   }
 });
 
-/* ---------------- remettre la fusée à la bonne place ---------------- */
+/* ---------------- resize ---------------- */
 
 window.addEventListener("resize", () => {
-  const milieuEcran = window.scrollY + (window.innerHeight * 0.6);
+  const milieuEcran = window.scrollY + window.innerHeight * 0.6;
 
   if (milieuEcran >= ecran6.offsetTop) {
     bougerFusee(ecran6, 25, 50, 24, 0);
@@ -248,9 +286,9 @@ window.addEventListener("resize", () => {
   } else if (milieuEcran >= ecran4.offsetTop) {
     bougerFusee(ecran4, 30, 34, -50, 0);
   } else if (milieuEcran >= ecran3.offsetTop) {
-    bougerFusee(ecran3, 26, 55, -14, 0);
+    bougerFusee(ecran3, 45, 55, 0, 0);
   } else if (milieuEcran >= ecran2.offsetTop) {
-    bougerFusee(ecran2, 72, 76, 36, 0);
+    bougerFusee(ecran2, 72, 70, 36, 0);
   } else {
     bougerFusee(ecran1, 78, 48, 18, 0);
   }
