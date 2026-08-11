@@ -2,6 +2,21 @@
 
 const scriptsInEvents = {
 
+	async Accueil_Event1(runtime, localVars)
+	{
+		window.parent.postMessage({
+		  source: "silverRocketGame",
+		  type: "progression",
+		  fragments: 0
+		}, "*");
+		
+		window.parent.postMessage({
+		  source: "silverRocketGame",
+		  type: "difficulte",
+		  valeur: "Non choisie"
+		}, "*");
+	},
+
 	async Accueil_Event7(runtime, localVars)
 	{
 		window.parent.postMessage({
@@ -60,15 +75,6 @@ const scriptsInEvents = {
 		
 	},
 
-	async FinJeu2_Event11(runtime, localVars)
-	{
-		window.parent.postMessage({
-		  source: "silverRocketGame",
-		  type: "progression",
-		  fragments: 2
-		}, "*");
-	},
-
 	async FinJeu1_Event11(runtime, localVars)
 	{
 		window.parent.postMessage({
@@ -78,7 +84,16 @@ const scriptsInEvents = {
 		}, "*");
 	},
 
-	async Accueil_Event1(runtime, localVars)
+	async FinJeu2_Event11(runtime, localVars)
+	{
+		window.parent.postMessage({
+		  source: "silverRocketGame",
+		  type: "progression",
+		  fragments: 2
+		}, "*");
+	},
+
+	async AnimationFinale_Event8(runtime, localVars)
 	{
 		window.parent.postMessage({
 		  source: "silverRocketGame",

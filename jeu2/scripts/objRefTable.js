@@ -96,6 +96,7 @@ self.C3_GetObjectRefTable = function () {
 		C3.JavaScriptInEvents.FinJeu2_Event11,
 		C3.Plugins.System.Exps.dt,
 		C3.Plugins.Sprite.Exps.Width,
+		C3.JavaScriptInEvents.AnimationFinale_Event8,
 		C3.Plugins.System.Cnds.Compare,
 		C3.Plugins.System.Exps.layoutname,
 		C3.Plugins.System.Acts.GoToLayoutByName,
