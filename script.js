@@ -330,7 +330,7 @@ const iframeJeu = document.querySelector(".jeu__iframe");
 function mettreAJourProgression(nombreFragments) { // ic la fonction met à jour le nombre de fragments récupérés
   if (!texteProgressionJeu) return;
 
-  texteProgressionJeu.textContent = nombreFragments + " / 3 fragments";
+  texteProgressionJeu.textContent = nombreFragments + " / 2 fragments";
 
   slotsFragments.forEach((slot) => {// ici je vérifie chaque case de fragment
     const numeroFragment = Number(slot.dataset.fragment);

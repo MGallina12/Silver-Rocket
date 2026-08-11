@@ -94,7 +94,6 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Audio.Acts.Stop,
 		C3.JavaScriptInEvents.FinJeu1_Event11,
 		C3.JavaScriptInEvents.FinJeu2_Event11,
-		C3.JavaScriptInEvents.FinJeu3_Event9,
 		C3.Plugins.System.Exps.dt,
 		C3.Plugins.Sprite.Exps.Width,
 		C3.Plugins.System.Cnds.Compare,

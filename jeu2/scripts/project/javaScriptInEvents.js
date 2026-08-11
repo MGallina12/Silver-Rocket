@@ -60,16 +60,6 @@ const scriptsInEvents = {
 		
 	},
 
-	async FinJeu3_Event9(runtime, localVars)
-	{
-		window.parent.postMessage({
-		  source: "silverRocketGame",
-		  type: "progression",
-		  fragments: 3
-		}, "*");
-		
-	},
-
 	async FinJeu2_Event11(runtime, localVars)
 	{
 		window.parent.postMessage({
