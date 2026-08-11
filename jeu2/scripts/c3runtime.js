@@ -1810,10 +1810,14 @@ self.C3_ExpressionFuncs = [
 		},
 		p => {
 			const v0 = p._GetNode(0).GetVar();
-			return () => and("ALIENS RESTANTS : ", (16 - v0.GetValue()));
+			return () => and(and(v0.GetValue(), " / "), 15);
 		},
 		() => 85,
 		() => 110,
+		p => {
+			const v0 = p._GetNode(0).GetVar();
+			return () => and("ALIENS RESTANTS : ", (16 - v0.GetValue()));
+		},
 		() => "Futura PT",
 		() => 14,
 		() => "entreeCheat",
