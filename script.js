@@ -203,12 +203,13 @@ boutonsThematique.forEach((bouton) => {
   bouton.addEventListener("click", () => {
     const cible = bouton.getAttribute("data-target");
     const contenu = document.getElementById(cible);
+    const estDejaOuvert = contenu && contenu.classList.contains("actif");
 
     document.querySelectorAll(".contenu__thematique").forEach((bloc) => {
       bloc.classList.remove("actif");
     });
 
-    if (contenu) {
+    if (contenu && !estDejaOuvert) {
       contenu.classList.add("actif");
     }
   });
@@ -234,6 +235,20 @@ const fenetreOeuvres = document.querySelector(".fenetre__oeuvres");
 const boutonGauche = document.querySelector(".bouton__carrousel__gauche");
 const boutonDroite = document.querySelector(".bouton__carrousel__droite");
 
+function mettreAJourBoutonsCarrousel() {
+  if (!fenetreOeuvres || !boutonGauche || !boutonDroite) return;
+
+  const positionScroll = fenetreOeuvres.scrollLeft;
+  const largeurVisible = fenetreOeuvres.clientWidth;
+  const largeurTotale = fenetreOeuvres.scrollWidth;
+
+  boutonGauche.classList.toggle("cache", positionScroll <= 5);
+  boutonDroite.classList.toggle(
+    "cache",
+    positionScroll + largeurVisible >= largeurTotale - 5
+  );
+}
+
 boutonDroite.addEventListener("click", () => {
   fenetreOeuvres.scrollBy({
     left: 365,
@@ -247,6 +262,12 @@ boutonGauche.addEventListener("click", () => {
     behavior: "smooth"
   });
 });
+
+fenetreOeuvres.addEventListener("scroll", mettreAJourBoutonsCarrousel);
+
+window.addEventListener("load", mettreAJourBoutonsCarrousel);
+
+mettreAJourBoutonsCarrousel();
 
 /* ---------------- écran 5 ---------------- */
 
@@ -264,18 +285,15 @@ ScrollTrigger.create({
 
 /* ---------------- écran 6 ---------------- */
 
-/* ---------------- écran jeu ---------------- */
-
 if (ecranJeu) {
   ScrollTrigger.create({
     trigger: ecranJeu,
     start: "top 60%",
     onEnter: () => {
-      bougerFusee(ecranJeu, 37, 68, -18);
-      construireFusee(4, 180, 0);
+      bougerFusee(ecranJeu, 25, 80, 25);
     },
     onEnterBack: () => {
-      bougerFusee(ecranJeu, 37, 68, -18);
+      bougerFusee(ecranJeu, 25, 80, 25);
     }
   });
 }
@@ -309,18 +327,18 @@ const texteDifficulteJeu = document.querySelector("#jeu__difficulte");
 const slotsFragments = document.querySelectorAll(".fragment__slot");
 const iframeJeu = document.querySelector(".jeu__iframe");
 
-function mettreAJourProgression(nombreFragments) {
+function mettreAJourProgression(nombreFragments) { // ic la fonction met à jour le nombre de fragments récupérés
   if (!texteProgressionJeu) return;
 
   texteProgressionJeu.textContent = nombreFragments + " / 3 fragments";
 
-  slotsFragments.forEach((slot) => {
+  slotsFragments.forEach((slot) => {// ici je vérifie chaque case de fragment
     const numeroFragment = Number(slot.dataset.fragment);
 
-    if (numeroFragment <= nombreFragments) {
-      slot.classList.add("fragment__slot--actif");
+    if (numeroFragment <= nombreFragments) {   
+      slot.classList.add("fragment__slot--actif"); //ici jactive
     } else {
-      slot.classList.remove("fragment__slot--actif");
+      slot.classList.remove("fragment__slot--actif");// ici je desactive si pas encore récupéré
     }
   });
 }
@@ -328,15 +346,15 @@ function mettreAJourProgression(nombreFragments) {
 function mettreAJourDifficulte(difficulte) {
   if (!texteDifficulteJeu) return;
 
-  texteDifficulteJeu.textContent = difficulte;
+  texteDifficulteJeu.textContent = difficulte; // ici je change le texte de la difficulté
 }
 
-window.addEventListener("message", (event) => {
-  if (iframeJeu && event.source !== iframeJeu.contentWindow) return;
+window.addEventListener("message", (event) => { // ici le site ecoute si construct envoi un message
+  if (iframeJeu && event.source !== iframeJeu.contentWindow) return; // verification si ca vien bien de construct
 
   const data = event.data;
 
-  if (!data || data.source !== "silverRocketGame") return;
+  if (!data || data.source !== "silverRocketGame") return; // 2 securité si le message vient pas de construct on l'ignore
 
   if (data.type === "progression") {
     mettreAJourProgression(data.fragments);
@@ -353,10 +371,10 @@ ScrollTrigger.create({
   trigger: ecran6,
   start: "top 60%",
   onEnter: () => {
-    bougerFusee(ecran6, 25, 50, 24);
+    bougerFusee(ecran6, 25, 50, -24);
   },
   onEnterBack: () => {
-    bougerFusee(ecran6, 25, 50, 24);
+    bougerFusee(ecran6, 25, 50, -24);
   }
 });
 
@@ -381,5 +399,6 @@ window.addEventListener("resize", () => {
     bougerFusee(ecran1, 78, 48, 18, 0);
   }
 
+  mettreAJourBoutonsCarrousel();
   ScrollTrigger.refresh();
 });

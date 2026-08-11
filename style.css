@@ -1,4 +1,4 @@
-/* ---------------- variables ---------------- */
+/* Variables et base */
 
 :root {
   --couleur-fond: #141414;
@@ -9,16 +9,6 @@
 
   --font-principale: "Futura", Arial, Helvetica, sans-serif;
 }
-
-body.theme__clair {
-  --couleur-fond: #F3F2EE;
-  --couleur-texte: #141414;
-  --couleur-touche: #0FB2CF;
-  --couleur-gris-clair: #D8D6D0;
-  --couleur-gris-fonce: #6D6D6D;
-}
-
-/* ---------------- base ---------------- */
 
 * {
   margin: 0;
@@ -33,6 +23,13 @@ html {
 
 body {
   background-color: var(--couleur-fond);
+  background:
+    -webkit-linear-gradient(115deg, rgba(15, 178, 207, 0.045), transparent 38%),
+    -webkit-linear-gradient(180deg, #10171a 0%, var(--couleur-fond) 32%, #111719 100%);
+  background:
+    linear-gradient(115deg, rgba(15, 178, 207, 0.045), transparent 38%),
+    linear-gradient(180deg, #10171a 0%, var(--couleur-fond) 32%, #111719 100%);
+  background-attachment: fixed;
   color: var(--couleur-texte);
   font-family: var(--font-principale);
   line-height: 1.6;
@@ -40,40 +37,22 @@ body {
   position: relative;
 }
 
-/* ---------------- bouton theme ---------------- */
-
-.theme__switch {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 20;
+body.theme__clair {
+  --couleur-fond: #F3F2EE;
+  --couleur-texte: #141414;
+  --couleur-touche: #0FB2CF;
+  --couleur-gris-clair: #D8D6D0;
+  --couleur-gris-fonce: #6D6D6D;
+  background:
+    -webkit-linear-gradient(115deg, rgba(15, 178, 207, 0.08), transparent 38%),
+    -webkit-linear-gradient(180deg, #eef3f3 0%, var(--couleur-fond) 35%, #e8eeee 100%);
+  background:
+    linear-gradient(115deg, rgba(15, 178, 207, 0.08), transparent 38%),
+    linear-gradient(180deg, #eef3f3 0%, var(--couleur-fond) 35%, #e8eeee 100%);
+  background-attachment: fixed;
 }
 
-.bouton__theme {
-  width: 52px;
-  height: 52px;
-  padding: 0;
-  border: 1px solid var(--couleur-gris-clair);
-  background-color: var(--couleur-fond);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
-}
-
-.bouton__theme:hover {
-  transform: scale(1.05);
-}
-
-.bouton__theme img {
-  display: block;
-  width: 22px;
-  height: 22px;
-  object-fit: contain;
-}
-
-/* ---------------- structure générale ---------------- */
+/* Structure générale */
 
 .page {
   position: relative;
@@ -105,15 +84,68 @@ body {
   max-width: none;
 }
 
-/* ---------------- typographie ---------------- */
+/* Bouton de thème */
+
+.theme__switch {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 20;
+}
+
+.bouton__theme {
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  border: 1px solid var(--couleur-touche);
+  background-color: rgba(15, 178, 207, 0.07);
+  box-shadow: inset 0 0 0 1px rgba(15, 178, 207, 0.12);
+  clip-path: polygon(9px 0, 100% 0, 100% calc(100% - 9px), calc(100% - 9px) 100%, 0 100%, 0 9px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.bouton__theme:hover {
+  transform: scale(1.05);
+  border-color: var(--couleur-touche);
+  background-color: var(--couleur-touche);
+}
+
+.bouton__theme img {
+  display: block;
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+/* Typographie */
 
 .numero__section {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 28px;
   margin-bottom: 14px;
-  color: var(--couleur-gris-fonce);
+  padding: 5px 12px 5px 8px;
+  border-top: 1px solid var(--couleur-touche);
+  border-right: 1px solid var(--couleur-gris-clair);
+  border-bottom: 1px solid var(--couleur-gris-clair);
+  background-color: rgba(15, 178, 207, 0.07);
+  color: var(--couleur-texte);
   font-size: 12px;
   line-height: 1.4;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
+}
+
+.numero__section::before {
+  content: "";
+  width: 22px;
+  height: 2px;
+  background-color: var(--couleur-touche);
 }
 
 h1,
@@ -152,28 +184,8 @@ span {
   line-height: 1.7;
 }
 
-.texte__oeuvre {
-  color: var(--couleur-gris-fonce);
-  font-size: 15px;
-  line-height: 1.6;
-  text-align: center;
-}
 
-/* ---------------- boutons / liens ---------------- */
-
-.bouton__retour {
-  display: inline-block;
-  margin-top: 32px;
-  color: var(--couleur-touche);
-  font-size: 15px;
-  text-decoration: none;
-}
-
-.bouton__retour:hover {
-  text-decoration: underline;
-}
-
-/* ---------------- visuels ---------------- */
+/* Visuels */
 
 .visuel img {
   display: block;
@@ -182,39 +194,7 @@ span {
   object-fit: contain;
 }
 
-/* ---------------- fusée ---------------- */
-
-.fusee__parcours {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 120px;
-  pointer-events: none;
-  z-index: 10;
-}
-
-.fusee__image,
-.fusee__piece {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-
-.fusee__image {
-  position: relative;
-  z-index: 1;
-}
-
-.fusee__piece {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  opacity: 0;
-}
-
-/* ---------------- lignes de fond ---------------- */
+/* Décor et lignes de fond */
 
 .decor__lignes {
   position: absolute;
@@ -226,8 +206,8 @@ span {
 .ligne__verticale,
 .ligne__horizontale {
   position: absolute;
-  background-color: var(--couleur-gris-clair);
-  opacity: 0.9;
+  background-color: var(--couleur-touche);
+  opacity: 0.2;
 }
 
 .ligne__verticale {
@@ -262,26 +242,55 @@ span {
   top: 47%;
 }
 
+.ligne__verticale--2,
+.ligne__horizontale--2 {
+  opacity: 0.38;
+}
+
 .ligne__horizontale--3 {
   top: 78%;
 }
 
-/* ---------------- écran 1 ---------------- */
+/* Fusée */
+
+.fusee__parcours {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.fusee__image,
+.fusee__piece {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.fusee__image {
+  position: relative;
+  z-index: 1;
+}
+
+.fusee__piece {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  opacity: 0;
+}
+
+/* Sections */
 
 .ecran__intro .contenu__texte {
   grid-column: 2 / 7;
 }
 
-/* ---------------- écran 2 ---------------- */
-
 .ecran__plateus .contenu__texte {
   grid-column: 7 / 12;
-}
-
-.visuel__portrait {
-  grid-column: 2 / 6;
-  grid-row: 1;
-  aspect-ratio: 4 / 5;
 }
 
 .reseaux__artiste {
@@ -332,7 +341,11 @@ span {
   opacity: 1;
 }
 
-/* ---------------- écran 3 ---------------- */
+.visuel__portrait {
+  grid-column: 2 / 6;
+  grid-row: 1;
+  aspect-ratio: 4 / 5;
+}
 
 .ecran__themes .contenu__texte {
   grid-column: 2 / 6;
@@ -379,7 +392,7 @@ span {
   text-align: right;
 }
 
-/* ---------------- écran 4 ---------------- */
+/* Carrousel */
 
 .ecran__travail .contenu__texte {
   grid-column: 7 / 12;
@@ -390,7 +403,16 @@ span {
   grid-column: 2 / 12;
   display: grid;
   grid-template-columns: auto 1fr auto;
+  gap: 14px;
+  padding: 20px 14px;
+  border-top: 1px solid var(--couleur-touche);
+  border-bottom: 1px solid var(--couleur-gris-clair);
+  background-color: rgba(8, 17, 20, 0.46);
   align-items: center;
+}
+
+body.theme__clair .carrousel__oeuvres {
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .fenetre__oeuvres {
@@ -413,12 +435,22 @@ span {
   flex: 0 0 calc((100% - 40px) / 3);
   display: grid;
   gap: 10px;
-  margin-left: 5px;
-  margin-right: 5px;
+  margin: 0;
+  padding: 10px 10px 16px;
+  border-left: 1px solid var(--couleur-gris-clair);
+  border-bottom: 1px solid var(--couleur-gris-clair);
+  background-color: rgba(15, 178, 207, 0.035);
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.carte__oeuvre:hover {
+  border-color: var(--couleur-touche);
+  background-color: rgba(15, 178, 207, 0.09);
 }
 
 .visuel__oeuvre {
   aspect-ratio: 16 / 10;
+  border: 1px solid var(--couleur-gris-clair);
 }
 
 .nom__oeuvre {
@@ -437,25 +469,32 @@ span {
 }
 
 .bouton__carrousel {
-  width: 42px;
-  height: 42px;
-  border: 1px solid var(--couleur-gris-clair);
-  border-radius: 20px;
-  background-color: transparent;
-  color: var(--couleur-texte);
+  width: 46px;
+  height: 54px;
+  border: 1px solid var(--couleur-touche);
+  border-radius: 0;
+  background-color: rgba(15, 178, 207, 0.07);
+  box-shadow: inset 0 0 0 1px rgba(15, 178, 207, 0.12);
+  clip-path: polygon(9px 0, 100% 0, 100% calc(100% - 9px), calc(100% - 9px) 100%, 0 100%, 0 9px);
+  color: var(--couleur-touche);
   font-family: var(--font-principale);
-  font-size: 20px;
+  font-size: 25px;
   cursor: pointer;
   transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
 }
 
 .bouton__carrousel:hover {
+  border-color: var(--couleur-touche);
   background-color: var(--couleur-touche);
-  color: var(--couleur-fond);
-  transform: scale(1.05);
+  color: #071013;
+  transform: translateX(0);
 }
 
-/* ---------------- écran 5 ---------------- */
+.bouton__carrousel.cache {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
 
 .ecran__delta .contenu__texte {
   grid-column: 2 / 7;
@@ -466,19 +505,40 @@ span {
   aspect-ratio: 4 / 3;
 }
 
-/* ---------------- écran 6 ---------------- */
+/* Interface du jeu */
 
 .ecran__jeu .contenu__texte {
   grid-column: 2 / 6;
 }
 
-.interface__jeu {
-  grid-column: 6 / 12;
-  display: grid;
-  gap: 18px;
+.ecran__jeu {
+  position: relative;
 }
 
-/* ---------------- infos jeu ---------------- */
+.ecran__jeu::before {
+  content: "";
+  position: absolute;
+  right: -40px;
+  bottom: 7%;
+  width: 110px;
+  height: 110px;
+  border: 1px solid var(--couleur-touche);
+  border-radius: 50%;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.ecran__jeu::after {
+  content: "";
+  position: absolute;
+  right: 13px;
+  bottom: calc(7% + 47px);
+  width: 28px;
+  height: 1px;
+  background-color: var(--couleur-touche);
+  opacity: 0.55;
+  pointer-events: none;
+}
 
 .jeu__infos {
   display: grid;
@@ -487,8 +547,12 @@ span {
 }
 
 .jeu__info {
-  padding: 14px 0;
-  border-top: 1px solid var(--couleur-gris-clair);
+  padding: 15px 16px;
+  border-top: 1px solid var(--couleur-touche);
+  border-right: 1px solid var(--couleur-gris-clair);
+  border-bottom: 1px solid var(--couleur-gris-clair);
+  border-left: 4px solid var(--couleur-touche);
+  background-color: rgba(15, 178, 207, 0.06);
 }
 
 .jeu__label {
@@ -505,38 +569,99 @@ span {
   line-height: 1.4;
 }
 
-.jeu__texte {
-  color: var(--couleur-gris-fonce);
-  font-size: 14px;
-  line-height: 1.6;
+.interface__jeu {
+  grid-column: 6 / 12;
+  display: grid;
+  position: relative;
+  gap: 16px;
+  padding: 46px 20px 20px;
+  border-top: 2px solid var(--couleur-touche);
+  border-right: 1px solid var(--couleur-gris-clair);
+  border-bottom: 1px solid var(--couleur-touche);
+  border-left: 1px solid var(--couleur-gris-clair);
+  background-color: rgba(5, 14, 17, 0.76);
 }
 
-/* ---------------- barre jeu ---------------- */
+.interface__jeu::before {
+  content: "SR-26  //  MODULE DE RECONSTRUCTION";
+  position: absolute;
+  top: 13px;
+  left: 20px;
+  color: var(--couleur-touche);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+}
+
+.interface__jeu::after {
+  content: "› › ›";
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  color: var(--couleur-touche);
+  font-size: 14px;
+  letter-spacing: -0.1em;
+}
 
 .jeu__barre {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   border: 1px solid var(--couleur-gris-clair);
+  position: relative;
+  border-top: 2px solid var(--couleur-touche);
+  background-color: rgba(15, 178, 207, 0.06);
 }
 
 .jeu__stat {
-  padding: 16px;
+  position: relative;
+  padding: 18px 44px 18px 18px;
   border-right: 1px solid var(--couleur-gris-clair);
+}
+
+.jeu__stat::after {
+  content: "››";
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  color: var(--couleur-touche);
+  font-size: 12px;
+  letter-spacing: -0.1em;
 }
 
 .jeu__stat:last-child {
   border-right: none;
 }
 
-/* ---------------- cadre jeu ---------------- */
-
 .jeu__cadre {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  border: 1px solid var(--couleur-gris-clair);
+  border: 2px solid var(--couleur-touche);
   background-color: #000;
+  outline: 1px solid var(--couleur-gris-clair);
+  outline-offset: 5px;
   overflow: hidden;
+}
+
+.coin__hud {
+  position: absolute;
+  z-index: 2;
+  width: 28px;
+  height: 28px;
+  pointer-events: none;
+}
+
+.coin__hud--haut {
+  top: 8px;
+  left: 8px;
+  border-top: 3px solid var(--couleur-touche);
+  border-left: 3px solid var(--couleur-touche);
+}
+
+.coin__hud--bas {
+  right: 8px;
+  bottom: 8px;
+  border-right: 3px solid var(--couleur-touche);
+  border-bottom: 3px solid var(--couleur-touche);
 }
 
 .jeu__iframe {
@@ -546,7 +671,20 @@ span {
   border: none;
 }
 
-/* ---------------- bouton écran plein ---------------- */
+.jeu__footer {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--couleur-touche);
+  align-items: center;
+}
+
+.jeu__texte {
+  color: var(--couleur-gris-fonce);
+  font-size: 14px;
+  line-height: 1.6;
+}
 
 .jeu__actions {
   display: flex;
@@ -555,10 +693,14 @@ span {
 }
 
 .bouton__plein__ecran {
+  position: relative;
+  min-width: 164px;
   height: 48px;
-  padding: 0 18px;
-  border: 1px solid var(--couleur-gris-clair);
-  background-color: transparent;
+  padding: 0 42px 0 18px;
+  border: 1px solid var(--couleur-touche);
+  background-color: rgba(15, 178, 207, 0.07);
+  box-shadow: inset 0 0 0 1px rgba(15, 178, 207, 0.12);
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
   color: var(--couleur-texte);
   font-family: var(--font-principale);
   font-size: 13px;
@@ -568,8 +710,61 @@ span {
 }
 
 .bouton__plein__ecran:hover {
+  border-color: var(--couleur-touche);
+  background-color: var(--couleur-touche);
+  color: #071013;
+}
+
+.bouton__plein__ecran::after {
+  content: "››";
+  position: absolute;
+  right: 15px;
+  color: var(--couleur-touche);
+  font-size: 15px;
+  letter-spacing: -0.1em;
+}
+
+.bouton__plein__ecran:hover::after {
+  color: #071013;
+}
+
+.jeu__fragments {
+  display: flex;
+  gap: 10px;
+}
+
+.fragment__slot {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--couleur-gris-clair);
+  border-top: 2px solid var(--couleur-touche);
+  background-color: rgba(15, 178, 207, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--couleur-gris-fonce);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  transition: color 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.fragment__slot::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 8px;
+  height: 8px;
+  border-top: 1px solid var(--couleur-touche);
+  border-left: 1px solid var(--couleur-touche);
+}
+
+.fragment__slot--actif {
   color: var(--couleur-touche);
   border-color: var(--couleur-touche);
+  background-color: rgba(15, 178, 207, 0.22);
+  box-shadow: inset 0 -3px 0 var(--couleur-touche);
 }
 
 .interface__jeu:fullscreen {
@@ -592,50 +787,88 @@ span {
   height: 100%;
 }
 
-/* ---------------- footer jeu ---------------- */
-
-.jeu__footer {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 18px;
-  align-items: center;
-}
-
-.jeu__fragments {
-  display: flex;
-  gap: 10px;
-}
-
-.fragment__slot {
-  width: 48px;
-  height: 48px;
-  border: 1px solid var(--couleur-gris-clair);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--couleur-gris-fonce);
-  font-size: 12px;
-  letter-spacing: 0.1em;
-}
-
-.fragment__slot--actif {
-  color: var(--couleur-touche);
-  border-color: var(--couleur-touche);
+body.theme__clair .interface__jeu {
+  background-color: rgba(242, 248, 248, 0.9);
 }
 
 
-/* ---------------- écran 7 ---------------- */
+/* Écran final */
 
 .ecran__fin .contenu__texte {
   grid-column: 7 / 11;
-  padding-top: 10vh;
+  position: relative;
+  padding: 38px 38px 42px;
+  border-top: 2px solid var(--couleur-touche);
+  border-right: 1px solid var(--couleur-gris-clair);
+  border-bottom: 1px solid var(--couleur-touche);
+  border-left: 1px solid var(--couleur-gris-clair);
+  background-color: rgba(8, 17, 20, 0.66);
 }
 
-/* ---------------- responsive ---------------- */
+body.theme__clair .ecran__fin .contenu__texte {
+  background-color: rgba(255, 255, 255, 0.58);
+}
+
+.ecran__fin .contenu__texte::after {
+  content: "";
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  width: 42px;
+  height: 42px;
+  border-right: 2px solid var(--couleur-touche);
+  border-bottom: 2px solid var(--couleur-touche);
+}
+
+.statut__final {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 20px;
+  color: var(--couleur-touche);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.statut__final::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--couleur-touche);
+  background-color: var(--couleur-touche);
+}
+
+.bouton__retour {
+  display: inline-block;
+  margin-top: 32px;
+  padding: 12px 18px;
+  border: 1px solid var(--couleur-touche);
+  background-color: rgba(15, 178, 207, 0.07);
+  box-shadow: inset 0 0 0 1px rgba(15, 178, 207, 0.12);
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+  color: var(--couleur-texte);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.bouton__retour:hover {
+  border-color: var(--couleur-touche);
+  background-color: var(--couleur-touche);
+  color: #071013;
+  text-decoration: none;
+}
+
+/* Responsive */
 
 @media (max-width: 900px) {
 
-  /* ---------------- structure générale ---------------- */
+  body,
+  body.theme__clair {
+    background-attachment: scroll;
+  }
 
   .page {
     width: min(100%, calc(100% - 40px));
@@ -664,17 +897,6 @@ span {
     padding-top: 0;
   }
 
-  .fusee__parcours {
-    display: none;
-  }
-
-  .visuel__portrait,
-  .visuel__delta {
-    margin-top: 36px;
-  }
-
-  /* ---------------- bouton theme ---------------- */
-
   .theme__switch {
     top: 16px;
     right: 16px;
@@ -690,19 +912,40 @@ span {
     height: 18px;
   }
 
-  /* ---------------- écran 2 ---------------- */
+  h1 {
+    font-size: clamp(52px, 12vw, 72px);
+  }
+
+  h2 {
+    font-size: clamp(40px, 10vw, 56px);
+  }
+
+  h3 {
+    font-size: 22px;
+  }
+
+  .texte__section {
+    font-size: 16px;
+  }
+
+  .fusee__parcours {
+    display: none;
+  }
+
+  .visuel__portrait,
+  .visuel__delta {
+    margin-top: 36px;
+  }
 
   .reseaux__artiste {
     margin-top: 24px;
   }
 
   .visuel__portrait {
-  width: 70%;
-  max-width: 260px;
-  margin: 36px auto 0 auto;
-}
-
-  /* ---------------- écran 3 ---------------- */
+    width: 70%;
+    max-width: 260px;
+    margin: 36px auto 0;
+  }
 
   .liste__thematiques {
     display: grid;
@@ -720,13 +963,12 @@ span {
     text-align: left;
   }
 
-  /* ---------------- écran 4 ---------------- */
-
   .carrousel__oeuvres {
     margin-top: 40px;
     grid-template-columns: 38px 1fr 38px;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
+    padding: 14px 8px;
   }
 
   .piste__oeuvres {
@@ -745,23 +987,10 @@ span {
     font-size: 14px;
   }
 
-  .bouton__carrousel {
-    width: 38px;
-    height: 38px;
-  }
-
-  /* ---------------- écran 5 ---------------- */
-
   .visuel__delta {
     width: 80%;
     max-width: 300px;
-    margin: 36px auto 0 auto;
-  }
-
-  /* ---------------- écran 6 ---------------- */
-
-    .ecran__jeu::before {
-    inset: 40px 0;
+    margin: 36px auto 0;
   }
 
   .contenu__texte__jeu,
@@ -771,6 +1000,18 @@ span {
 
   .interface__jeu {
     margin-top: 42px;
+    padding: 42px 12px 14px;
+  }
+
+  .interface__jeu::before {
+    left: 12px;
+    font-size: 9px;
+  }
+
+  .interface__jeu::after,
+  .ecran__jeu::before,
+  .ecran__jeu::after {
+    display: none;
   }
 
   .jeu__barre {
@@ -790,6 +1031,7 @@ span {
   .jeu__cadre {
     aspect-ratio: 4 / 3;
     background-size: 34px 34px;
+    outline-offset: 3px;
   }
 
   .jeu__footer {
@@ -806,25 +1048,26 @@ span {
   }
 
   .jeu__actions {
+    width: 100%;
     align-items: flex-start;
     flex-direction: column;
   }
 
-  /* ---------------- typographie ---------------- */
-
-  h1 {
-    font-size: clamp(52px, 12vw, 72px);
+  .bouton__plein__ecran {
+    width: 100%;
   }
 
-  h2 {
-    font-size: clamp(40px, 10vw, 56px);
+  .coin__hud {
+    width: 18px;
+    height: 18px;
   }
 
-  h3 {
-    font-size: 22px;
+  .ecran__fin .contenu__texte {
+    padding: 26px 22px 30px;
   }
 
-  .texte__section {
-    font-size: 16px;
+  .ecran__fin .contenu__texte::after {
+    display: none;
   }
+
 }
