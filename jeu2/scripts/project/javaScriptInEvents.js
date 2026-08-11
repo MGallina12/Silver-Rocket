@@ -2,37 +2,7 @@
 
 const scriptsInEvents = {
 
-	async Accueil_Event6(runtime, localVars)
-	{
-		window.parent.postMessage({
-		  source: "silverRocketGame",
-		  type: "difficulte",
-		  valeur: "Facile"
-		}, "*");
-		alert('facile')
-		
-	},
-
-	async Accueil_Event8(runtime, localVars)
-	{
-		window.parent.postMessage({
-		  source: "silverRocketGame",
-		  type: "difficulte",
-		  valeur: "Moyen"
-		}, "*");
-	},
-
-	async Accueil_Event10(runtime, localVars)
-	{
-		window.parent.postMessage({
-		  source: "silverRocketGame",
-		  type: "difficulte",
-		  valeur: "Difficile"
-		}, "*");
-		
-	},
-
-	async Accueil_Event12(runtime, localVars)
+	async Accueil_Event7(runtime, localVars)
 	{
 		window.parent.postMessage({
 		  source: "silverRocketGame",
@@ -42,7 +12,7 @@ const scriptsInEvents = {
 		
 	},
 
-	async Accueil_Event14(runtime, localVars)
+	async Accueil_Event9(runtime, localVars)
 	{
 		window.parent.postMessage({
 		  source: "silverRocketGame",
@@ -51,7 +21,7 @@ const scriptsInEvents = {
 		}, "*");
 	},
 
-	async Accueil_Event16(runtime, localVars)
+	async Accueil_Event11(runtime, localVars)
 	{
 		window.parent.postMessage({
 		  source: "silverRocketGame",
@@ -59,9 +29,66 @@ const scriptsInEvents = {
 		  valeur: "Difficile"
 		}, "*");
 		
+	},
+
+	async Accueil_Event13(runtime, localVars)
+	{
+		window.parent.postMessage({
+		  source: "silverRocketGame",
+		  type: "difficulte",
+		  valeur: "Facile"
+		}, "*");
+		
+	},
+
+	async Accueil_Event15(runtime, localVars)
+	{
+		window.parent.postMessage({
+		  source: "silverRocketGame",
+		  type: "difficulte",
+		  valeur: "Moyen"
+		}, "*");
 	},
 
 	async Accueil_Event17(runtime, localVars)
+	{
+		window.parent.postMessage({
+		  source: "silverRocketGame",
+		  type: "difficulte",
+		  valeur: "Difficile"
+		}, "*");
+		
+	},
+
+	async FinJeu3_Event9(runtime, localVars)
+	{
+		window.parent.postMessage({
+		  source: "silverRocketGame",
+		  type: "progression",
+		  fragments: 3
+		}, "*");
+		
+	},
+
+	async FinJeu2_Event11(runtime, localVars)
+	{
+		window.parent.postMessage({
+		  source: "silverRocketGame",
+		  type: "progression",
+		  fragments: 2
+		}, "*");
+	},
+
+	async FinJeu1_Event11(runtime, localVars)
+	{
+		window.parent.postMessage({
+		  source: "silverRocketGame",
+		  type: "progression",
+		  fragments: 1
+		}, "*");
+	},
+
+	async Accueil_Event1(runtime, localVars)
 	{
 		window.parent.postMessage({
 		  source: "silverRocketGame",
