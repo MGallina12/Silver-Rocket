@@ -3,9 +3,12 @@
 :root {
   --couleur-fond: #141414;
   --couleur-texte: #F3F2EE;
+  --couleur-texte-panneau: #F3F2EE;
+  --couleur-gris-panneau: #D8D6D0;
   --couleur-touche: #0FB2CF;
   --couleur-gris-clair: #6D6D6D;
   --couleur-gris-fonce: #D8D6D0;
+  --couleur-texte-page: #F3F2EE;
 
   --font-principale: "Futura", Arial, Helvetica, sans-serif;
 }
@@ -39,10 +42,14 @@ body {
 
 body.theme__clair {
   --couleur-fond: #F3F2EE;
-  --couleur-texte: #141414;
+  --couleur-texte: #ffffff;
+  --couleur-texte-panneau: #F3F2EE;
+  --couleur-gris-panneau: #D8D6D0;
   --couleur-touche: #0FB2CF;
   --couleur-gris-clair: #D8D6D0;
   --couleur-gris-fonce: #6D6D6D;
+   --couleur-texte-page: #141414;
+
   background:
     -webkit-linear-gradient(115deg, rgba(15, 178, 207, 0.08), transparent 38%),
     -webkit-linear-gradient(180deg, #eef3f3 0%, var(--couleur-fond) 35%, #e8eeee 100%);
@@ -84,6 +91,7 @@ body.theme__clair {
   padding: 34px 36px 38px;
   border-left: 2px solid var(--couleur-touche);
   border-bottom: 1px solid var(--couleur-touche);
+  color: var(--couleur-texte-panneau);
   background:
     linear-gradient(90deg, rgba(15, 178, 207, 0.08), transparent 42%),
     linear-gradient(180deg, rgba(5, 10, 22, 0.92), rgba(8, 8, 15, 0.86));
@@ -189,7 +197,7 @@ span {
 
 .texte__section {
   max-width: 680px;
-  color: var(--couleur-texte);
+  color: inherit;
   font-size: 17px;
   line-height: 1.7;
 }
@@ -374,7 +382,7 @@ span {
   border: none;
   border-top: 1px solid var(--couleur-gris-clair);
   background: transparent;
-  color: var(--couleur-texte);
+  color: var(--couleur-touche);
   font-family: var(--font-principale);
   font-size: 24px;
   line-height: 1.2;
@@ -400,6 +408,7 @@ span {
   max-width: 100%;
   font-size: 16px;
   text-align: right;
+  color: var(--couleur-texte-page);
 }
 
 /* Carrousel */
@@ -446,7 +455,7 @@ body.theme__clair .carrousel__oeuvres {
   display: grid;
   gap: 10px;
   margin: 0;
-  padding: 10px 10px 16px;
+  padding: 10px 15px 16px;
   border-left: 1px solid var(--couleur-gris-clair);
   border-bottom: 1px solid var(--couleur-gris-clair);
   background-color: rgba(15, 178, 207, 0.035);
@@ -472,7 +481,7 @@ body.theme__clair .carrousel__oeuvres {
 }
 
 .texte__oeuvre {
-  color: var(--couleur-gris-fonce);
+  color: var(--couleur-texte-page);
   font-size: 15px;
   line-height: 1.6;
   text-align: center;
@@ -773,10 +782,6 @@ body.theme__clair .carrousel__oeuvres {
   height: 100%;
 }
 
-body.theme__clair .interface__jeu {
-  background-color: rgba(242, 248, 248, 0.9);
-}
-
 
 /* Écran final */
 
@@ -789,10 +794,6 @@ body.theme__clair .interface__jeu {
   border-bottom: 1px solid var(--couleur-touche);
   border-left: 1px solid var(--couleur-gris-clair);
   background-color: rgba(8, 17, 20, 0.66);
-}
-
-body.theme__clair .ecran__fin .contenu__texte {
-  background-color: rgba(255, 255, 255, 0.58);
 }
 
 .ecran__fin .contenu__texte::after {
