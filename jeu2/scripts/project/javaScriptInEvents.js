@@ -17,35 +17,6 @@ const scriptsInEvents = {
 		}, "*");
 	},
 
-	async Accueil_Event7(runtime, localVars)
-	{
-		window.parent.postMessage({
-		  source: "silverRocketGame",
-		  type: "difficulte",
-		  valeur: "Facile"
-		}, "*");
-		
-	},
-
-	async Accueil_Event9(runtime, localVars)
-	{
-		window.parent.postMessage({
-		  source: "silverRocketGame",
-		  type: "difficulte",
-		  valeur: "Moyen"
-		}, "*");
-	},
-
-	async Accueil_Event11(runtime, localVars)
-	{
-		window.parent.postMessage({
-		  source: "silverRocketGame",
-		  type: "difficulte",
-		  valeur: "Difficile"
-		}, "*");
-		
-	},
-
 	async Accueil_Event13(runtime, localVars)
 	{
 		window.parent.postMessage({
@@ -66,6 +37,35 @@ const scriptsInEvents = {
 	},
 
 	async Accueil_Event17(runtime, localVars)
+	{
+		window.parent.postMessage({
+		  source: "silverRocketGame",
+		  type: "difficulte",
+		  valeur: "Difficile"
+		}, "*");
+		
+	},
+
+	async Accueil_Event19(runtime, localVars)
+	{
+		window.parent.postMessage({
+		  source: "silverRocketGame",
+		  type: "difficulte",
+		  valeur: "Facile"
+		}, "*");
+		
+	},
+
+	async Accueil_Event21(runtime, localVars)
+	{
+		window.parent.postMessage({
+		  source: "silverRocketGame",
+		  type: "difficulte",
+		  valeur: "Moyen"
+		}, "*");
+	},
+
+	async Accueil_Event23(runtime, localVars)
 	{
 		window.parent.postMessage({
 		  source: "silverRocketGame",
