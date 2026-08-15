@@ -80,8 +80,21 @@ body.theme__clair {
 }
 
 .contenu__texte {
-  width: 100%;
-  max-width: none;
+  position: relative;
+  padding: 34px 36px 38px;
+  border-left: 2px solid var(--couleur-touche);
+  border-bottom: 1px solid var(--couleur-touche);
+  background:
+    linear-gradient(90deg, rgba(15, 178, 207, 0.08), transparent 42%),
+    linear-gradient(180deg, rgba(5, 10, 22, 0.92), rgba(8, 8, 15, 0.86));
+  clip-path: polygon(
+    38px 0,
+    100% 0,
+    100% calc(100% - 30px),
+    calc(100% - 50px) 100%,
+    0 100%,
+    0 38px
+  );
 }
 
 /* Bouton de thème */
@@ -125,27 +138,24 @@ body.theme__clair {
 
 .numero__section {
   display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 28px;
-  margin-bottom: 14px;
-  padding: 5px 12px 5px 8px;
-  border-top: 1px solid var(--couleur-touche);
-  border-right: 1px solid var(--couleur-gris-clair);
-  border-bottom: 1px solid var(--couleur-gris-clair);
-  background-color: rgba(15, 178, 207, 0.07);
-  color: var(--couleur-texte);
-  font-size: 12px;
-  line-height: 1.4;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
-
-.numero__section::before {
-  content: "";
-  width: 22px;
-  height: 2px;
+  min-width: 230px;
+  justify-content: center;
+  margin-bottom: 24px;
+  padding: 8px 22px;
   background-color: var(--couleur-touche);
+  color: #071013;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  clip-path: polygon(
+    18px 0,
+    100% 0,
+    100% calc(100% - 10px),
+    calc(100% - 18px) 100%,
+    0 100%,
+    0 10px
+  );
 }
 
 h1,
@@ -355,7 +365,7 @@ span {
   grid-column: 7 / 12;
   display: grid;
   gap: 12px;
-  padding-top: 84px;
+  padding-top: 150px;
 }
 
 .bouton__thematique {
@@ -508,36 +518,11 @@ body.theme__clair .carrousel__oeuvres {
 /* Interface du jeu */
 
 .ecran__jeu .contenu__texte {
-  grid-column: 2 / 6;
+  grid-column: 1 / 6;
 }
 
 .ecran__jeu {
   position: relative;
-}
-
-.ecran__jeu::before {
-  content: "";
-  position: absolute;
-  right: -40px;
-  bottom: 7%;
-  width: 110px;
-  height: 110px;
-  border: 1px solid var(--couleur-touche);
-  border-radius: 50%;
-  opacity: 0.3;
-  pointer-events: none;
-}
-
-.ecran__jeu::after {
-  content: "";
-  position: absolute;
-  right: 13px;
-  bottom: calc(7% + 47px);
-  width: 28px;
-  height: 1px;
-  background-color: var(--couleur-touche);
-  opacity: 0.55;
-  pointer-events: none;
 }
 
 .jeu__infos {
@@ -582,21 +567,22 @@ body.theme__clair .carrousel__oeuvres {
   background-color: rgba(5, 14, 17, 0.76);
 }
 
-.interface__jeu::before {
-  content: "SR-26  //  MODULE DE RECONSTRUCTION";
-  position: absolute;
-  top: 13px;
-  left: 20px;
+.interface__entete {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: -33px;
+  margin-bottom: 13px;
+}
+
+.interface__code {
   color: var(--couleur-touche);
   font-size: 10px;
   letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
-.interface__jeu::after {
-  content: "› › ›";
-  position: absolute;
-  top: 10px;
-  right: 20px;
+.interface__chevrons {
   color: var(--couleur-touche);
   font-size: 14px;
   letter-spacing: -0.1em;
@@ -1003,15 +989,16 @@ body.theme__clair .ecran__fin .contenu__texte {
     padding: 42px 12px 14px;
   }
 
-  .interface__jeu::before {
-    left: 12px;
-    font-size: 9px;
+  .interface__entete {
+  margin-top: -29px;
   }
 
-  .interface__jeu::after,
-  .ecran__jeu::before,
-  .ecran__jeu::after {
-    display: none;
+  .interface__code {
+  font-size: 9px;
+  }
+
+  .interface__chevrons {
+  display: none;
   }
 
   .jeu__barre {

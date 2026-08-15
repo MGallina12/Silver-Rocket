@@ -173,11 +173,11 @@ ScrollTrigger.create({
   trigger: ecran2,
   start: "top 60%",
   onEnter: () => {
-    bougerFusee(ecran2, 72, 70, 36);
+    bougerFusee(ecran2, 45, 50, 0);
     construireFusee(1, 0, -180);
   },
   onEnterBack: () => {
-    bougerFusee(ecran2, 72, 70, 36);
+    bougerFusee(ecran2, 45, 50, 0);
   }
 });
 
@@ -221,11 +221,11 @@ ScrollTrigger.create({
   trigger: ecran4,
   start: "top 60%",
   onEnter: () => {
-    bougerFusee(ecran4, 30, 20, -50);
+    bougerFusee(ecran4, 30, 35, -50);
     construireFusee(3, -180, 0);
   },
   onEnterBack: () => {
-    bougerFusee(ecran4, 30, 20, -50);
+    bougerFusee(ecran4, 30, 35, -50);
   }
 });
 
@@ -290,10 +290,10 @@ if (ecranJeu) {
     trigger: ecranJeu,
     start: "top 60%",
     onEnter: () => {
-      bougerFusee(ecranJeu, 25, 80, 25);
+      bougerFusee(ecranJeu, 40, 80, 0);
     },
     onEnterBack: () => {
-      bougerFusee(ecranJeu, 25, 80, 25);
+      bougerFusee(ecranJeu, 40, 80, 0);
     }
   });
 }
