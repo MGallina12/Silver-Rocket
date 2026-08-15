@@ -766,9 +766,10 @@ body.theme__clair .carrousel__oeuvres {
   width: 100vw;
   height: 100vh;
   padding: 24px;
+  padding-top: 48px;
   background-color: var(--couleur-fond);
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto auto 1fr auto;
 }
 
 .interface__jeu:fullscreen .jeu__cadre {
