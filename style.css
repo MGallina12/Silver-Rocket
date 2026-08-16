@@ -576,6 +576,10 @@ body.theme__clair .carrousel__oeuvres {
   background-color: rgba(5, 14, 17, 0.76);
 }
 
+.jeu__texte--mobile {
+  display: none;
+}
+
 .interface__entete {
   display: flex;
   justify-content: space-between;
@@ -1005,6 +1009,27 @@ body.theme__clair .carrousel__oeuvres {
 
   .jeu__barre {
     grid-template-columns: 1fr;
+  }
+
+  .jeu__cadre {
+    min-height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 28px;
+  }
+
+  .jeu__cadre .jeu__iframe {
+    display: none;
+  }
+
+  .jeu__texte--mobile {
+    display: block;
+    max-width: 420px;
+    color: var(--couleur-texte-panneau);
+    text-align: center;
+    font-size: 15px;
+    line-height: 1.6;
   }
 
   .jeu__stat {
