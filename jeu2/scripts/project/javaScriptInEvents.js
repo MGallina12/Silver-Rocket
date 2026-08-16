@@ -75,21 +75,21 @@ const scriptsInEvents = {
 		
 	},
 
-	async FinJeu1_Event11(runtime, localVars)
-	{
-		window.parent.postMessage({
-		  source: "silverRocketGame",
-		  type: "progression",
-		  fragments: 1
-		}, "*");
-	},
-
 	async FinJeu2_Event11(runtime, localVars)
 	{
 		window.parent.postMessage({
 		  source: "silverRocketGame",
 		  type: "progression",
 		  fragments: 2
+		}, "*");
+	},
+
+	async FinJeu1_Event11(runtime, localVars)
+	{
+		window.parent.postMessage({
+		  source: "silverRocketGame",
+		  type: "progression",
+		  fragments: 1
 		}, "*");
 	},
 

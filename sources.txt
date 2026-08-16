@@ -46,13 +46,6 @@ window.parent.postMessage({
   fragments: 2
 }, "*");
 
-fragment 3 :
-
-window.parent.postMessage({
-  source: "silverRocketGame",
-  type: "progression",
-  fragments: 3
-}, "*");
 
 a mettre quand le jeu se lance :
  
